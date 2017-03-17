@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
+    
+  </head>
+  <body>
+    <a-scene>
+
+      <a-box id = "cube" position="5 0 0" rotation="0 90 0" width="10" height="1" depth="1"  color="#5CC3D9" ></a-box>
+      
+      <a-box position="-5 0 0" rotation="0 90 0" width="10" height="1" depth="1"  color="#4CC3D9"></a-box>
+      
+      <a-plane rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+	  <a-entity position="0 0 4">
+	  	<a-plane rotation="180 0 0" width="12" height="10" color="#7BC1A4"></a-plane>
+	  <a-entity position="0 0 -4">
+
+
+      <a-plane rotation="0 0 0" position = "0 0 -3" width="11" height="10" color="#7BC877"></a-plane>
+
+      <a-entity position="0 5 0">
+      	<a-plane rotation="90 0 0" width="12" height="10" color="#7BC8A4"></a-plane>
+	  <a-entity position="0 -5 0">
+
+	  <a-entity position="-5 0 0">
+      	<a-plane rotation="0 90 0" width="12" height="10" color="#7BA8A4"></a-plane>
+	  <a-entity position="5 0 0">
+
+	  <a-entity position="5 0 0">
+      	<a-plane rotation="0 -90 0" width="12" height="10" color="#7BC1A4"></a-plane>
+	  <a-entity position="-5 0 0">
+
+	  <a-entity position="4 4.5 -3">
+      	<a-plane rotation="45 -45 0" width="2" height="2" color="green" id = "light1"></a-plane>
+	  <a-entity position="-4 -4.5 3">
+
+	  <a-entity position="-4.2 4.5 -3">
+      	<a-plane rotation="45 45 0" width="2" height="2" color="green" id = "light2"></a-plane>
+	  <a-entity position="4.2 -4.5 3">
+
+
+
+      <a-sky color="#ECECEC"></a-sky>
+      
+        <a-camera>
+        	<a-entity cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat">
+  			</a-entity>
+        </a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+  <script>
+	document.querySelector('#light1').addEventListener('click', function () {
+	  if(this.getAttribute("color")=="red") {
+	  	this.setAttribute('color', 'green');
+        socket.emit("on", 2);
+	  } else {
+	  	this.setAttribute('color', 'red');
+  	   socket.emit("off", 2);
+    }
+	});
+	document.querySelector('#light2').addEventListener('click', function () {
+		if(this.getAttribute("color")=="red") {
+	  	this.setAttribute('color', 'green');
+      socket.emit("on", 3)
+	  } else {
+	  	this.setAttribute('color', 'red');
+    	   socket.emit("off", 3);
+	  }
+	});
+
+  </script>
+</html>
