@@ -7,7 +7,7 @@ def main(args):
     if len(args) < 3:
         sys.exit("Usage: python awesome.py <led> <on/off>")
 
-    pin = args[1]
+    pin = int(args[1])
     on = 0
 
     if args[2] == 'on':
