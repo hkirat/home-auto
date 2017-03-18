@@ -15,6 +15,16 @@
   <body>
     <a-scene>
 
+      <a-assets>
+        <a-asset-item id="tree-obj" src="lcd.obj"></a-asset-item>
+        <a-asset-item id="tree-mtl" src="Avent.mtl"></a-asset-item>
+      </a-assets>
+      
+      
+      <a-entity position="0 3 -3">
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>
+      <a-entity position="0 -3 3">
+
       <a-box id = "cube" position="5 0 0" rotation="0 90 0" width="10" height="1" depth="1"  color="#5CC3D9" ></a-box>
       
       <a-box position="-5 0 0" rotation="0 90 0" width="10" height="1" depth="1"  color="#4CC3D9"></a-box>
@@ -31,7 +41,7 @@
       	<a-plane rotation="90 0 0" width="12" height="10" color="#7BC8A4"></a-plane>
 	  <a-entity position="0 -5 0">
 
-	  <a-entity position="-5 0 0">
+    <a-entity position="-5 0 0">
       	<a-plane rotation="0 90 0" width="12" height="10" color="#7BA8A4"></a-plane>
 	  <a-entity position="5 0 0">
 
