@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import sys
 
 GPIO.setmode(GPIO.BCM)  # set board mode to Broadcom
 
