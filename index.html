@@ -65,19 +65,19 @@
 	document.querySelector('#light1').addEventListener('click', function () {
 	  if(this.getAttribute("color")=="red") {
 	  	this.setAttribute('color', 'green');
-        socket.emit("on", 2);
+        socket.emit("on", 3);
 	  } else {
 	  	this.setAttribute('color', 'red');
-  	   socket.emit("off", 2);
+  	   socket.emit("off", 3);
     }
 	});
 	document.querySelector('#light2').addEventListener('click', function () {
 		if(this.getAttribute("color")=="red") {
 	  	this.setAttribute('color', 'green');
-      socket.emit("on", 3)
+      socket.emit("on", 4)
 	  } else {
 	  	this.setAttribute('color', 'red');
-    	   socket.emit("off", 3);
+    	   socket.emit("off", 4);
 	  }
 	});
 
