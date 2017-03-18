@@ -10,10 +10,10 @@ def main(args):
     pin = int(args[1])
     on = 0
 
-    if args[2] == 'on':
+    if args[2] == 'off':
         on = 1
 
-    if args[2] == 'off':
+    if args[2] == 'on':
         on = 0
 
     GPIO.setup(pin, GPIO.OUT)
