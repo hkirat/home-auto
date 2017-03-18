@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://simplewebrtc.com/latest-v2.js"></script> 
 <script>
   var socket = io();
 </script>
@@ -15,6 +16,11 @@
   <body>
     <a-scene>
 
+       <a-assets>
+        <video id="penguin-sledding" auotplay src="#"></video>
+      </a-assets>
+      <!-- Using the asset management system. -->
+      <a-video src="#penguin-sledding" width="6" height="3" position="0 2 -2.8" rotation="" scale="" visible="" material="" geometry=""></a-video>
       <a-assets>
         <a-asset-item id="tree-obj" src="lcd.obj"></a-asset-item>
         <a-asset-item id="tree-mtl" src="Avent.mtl"></a-asset-item>
@@ -90,6 +96,39 @@
     	   socket.emit("off", 4);
 	  }
 	});
+
+
+
+webrtc = new SimpleWebRTC({
+  // the id/element dom element that will hold "our" video
+  localVideoEl: 'localVideo',
+  // the id/element dom element that will hold remote videos
+  //remoteVideosEl: 'remotesVideos',
+  // immediately ask for camera access
+  autoRequestMedia: true,
+  localVideo: false,
+  nick: "harkirat",
+  media: { video: false, audio: false  }
+  //,
+  //url: 'https://192.168.0.138:8888'
+
+});
+// we have to wait until it's ready
+webrtc.on('readyToCall', function () {
+    // you can name it anything
+    webrtc.joinRoom('arpitsing');
+
+});
+
+webrtc.on('videoAdded', function(videoEl, peer) {
+  var video = document.getElementById('penguin-sledding');
+  video.src = window.URL.createObjectURL(peer.stream);
+  video.play();
+  StartAudioTransSession(peer.stream, handleSubs);
+  videoEl.display = null;
+});
+
+
 
   </script>
 </html>
